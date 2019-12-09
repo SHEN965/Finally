@@ -50,8 +50,7 @@ public class HomeFragment extends Fragment {
         scanView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ScanActivity scanActivity = (ScanActivity ) getActivity();
-                scanActivity.startScan();
+                startActivity(new Intent(getActivity(),ScanActivity.class));
             }
         });
     }
