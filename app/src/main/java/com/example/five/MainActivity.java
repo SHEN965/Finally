@@ -1,5 +1,7 @@
 package com.example.five;
 
+import android.Manifest;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -11,6 +13,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int SCAN_REQUEST_CODE=200;
+    private int SELECT_IMAGE_REQUEST_CODE=201;
+    protected final int PERMS_REQUEST_CODE = 202;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(mBottomNavigationView, navController);
+
+        String[] permissions=new String[]{Manifest.permission.
+                WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            requestPermissions(permissions,PERMS_REQUEST_CODE);
+        }
     }
 
 }
