@@ -56,16 +56,11 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(),ScanActivity.class));
             }
         });
-
-
-
-
     }
 
+
     public static void addclerListener(final EditText e1, final ImageView m1) {
-
         e1.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
@@ -89,16 +84,12 @@ public class HomeFragment extends Fragment {
             }
         });
         m1.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 // 清空输入框
                 e1.setText("");
-
             }
         });
-
     }
-
 }
