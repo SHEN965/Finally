@@ -5,6 +5,13 @@
     <string name="title_star">收藏</string>
     <string name="title_me">用户</string>
 
+    <string name="personal_name">用户名</string>
+    <string name="personal_page">个人主页></string>
+    <string name="personal_collect">我的收藏</string>
+    <string name="personal_HaiTao">海淘订单</string>
+    <string name="personal_contribute">我的投稿</string>
+    <string name="personal_discuss">我的讨论</string>
+
 
     <string name="qr_code_text">二维码</string>
     <string name="scan_qr_code_warn">将二维码放入框内，即可自动扫描</string>

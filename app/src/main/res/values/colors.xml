@@ -16,4 +16,8 @@
     <color name="black_color">#000000</color>
     <color name="white_normal">#ffffffff</color>
     <color name="global_color">#F7F7F8</color>
+
+    <color name="true_white">#ffffff</color>
+    <color name="true_black">#000000</color>
+    <color name="personal_background_red">#DC143C</color>
 </resources>
