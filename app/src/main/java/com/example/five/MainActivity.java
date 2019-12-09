@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.five.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private int SCAN_REQUEST_CODE=200;
     private int SELECT_IMAGE_REQUEST_CODE=201;
     protected final int PERMS_REQUEST_CODE = 202;
+    EditText e1, e2;
+    ImageView m1, m2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +47,17 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             requestPermissions(permissions,PERMS_REQUEST_CODE);
         }
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.fragment_home);
+        SearchCar();
     }
 
-//    public void showScan(int id){
-//        Intent intent = new Intent(MainActivity.this,ScanActivity.class);
-//        startActivityForResult(intent,SCAN_REQUEST_CODE);
-//    }
+    private void SearchCar(){
+        e1 = (EditText) findViewById(R.id.search);
+        m1 = (ImageView) findViewById(R.id.btn_search);
+        HomeFragment.addclerListener(e1,m1);
+    }
+
 
 
     @Override
