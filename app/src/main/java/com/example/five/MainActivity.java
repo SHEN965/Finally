@@ -1,11 +1,15 @@
 package com.example.five;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -39,4 +43,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//    public void showScan(int id){
+//        Intent intent = new Intent(MainActivity.this,ScanActivity.class);
+//        startActivityForResult(intent,SCAN_REQUEST_CODE);
+//    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == SCAN_REQUEST_CODE && resultCode == RESULT_OK) {
+            String input = intent.getStringExtra(ScanActivity.INTENT_EXTRA_RESULT);
+            showToast("扫描结果:"+input);
+        }
+    }
+    private void showToast(String str){
+        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
+    }
 }
