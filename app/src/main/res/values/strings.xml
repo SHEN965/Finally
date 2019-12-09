@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GUZZI</string>
+    <string name="title_home">首页</string>
+    <string name="title_anli">推荐</string>
+    <string name="title_star">收藏</string>
+    <string name="title_me">用户</string>
+</resources>
