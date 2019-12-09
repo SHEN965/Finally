@@ -19,8 +19,6 @@ import android.os.HandlerThread;
 import android.os.Process;
 import android.os.Vibrator;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -35,8 +33,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ansen.zxingtest.camera.CameraManager;
-import com.ansen.zxingtest.view.ScannerView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.five.camera.CameraManager;
+import com.example.five.view.ScannerView;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.DecodeHintType;
