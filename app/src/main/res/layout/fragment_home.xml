@@ -32,8 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@drawable/shape_wihte_frame"
-                android:hint="搜索"
+                android:background="@drawable/shape_wihte_frame"/>
+<!--                android:hint="搜索"-->
                 android:textAlignment="center"
                 android:textColor="@color/black_color" />
 
