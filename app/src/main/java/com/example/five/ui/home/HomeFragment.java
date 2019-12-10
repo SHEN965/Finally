@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     private int SCAN_REQUEST_CODE = 200;
     private OnScanClickListener mListener;
     private EditText searchText;
-    private ImageView btn_search;
+    private ImageView btn_delete;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -41,8 +41,8 @@ public class HomeFragment extends Fragment {
 //        final TextView textView = root.findViewById(R.id.text_home);
         scanView = root.findViewById(R.id.btn_scanning);
         searchText = root.findViewById(R.id.search);
-        btn_search = root.findViewById(R.id.btn_search);
-        addclerListener(searchText,btn_search);
+        btn_delete = root.findViewById(R.id.btn_delete);
+        addclerListener(searchText,btn_delete);
 //        homeViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
