@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private int SCAN_REQUEST_CODE=200;
     private int SELECT_IMAGE_REQUEST_CODE=201;
     protected final int PERMS_REQUEST_CODE = 202;
+    EditText e1, e2;
+    ImageView m1, m2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(permissions,PERMS_REQUEST_CODE);
         }
     }
+
 
 
     @Override

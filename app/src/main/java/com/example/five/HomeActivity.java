@@ -2,6 +2,9 @@ package com.example.five;
 
 import android.app.AppComponentFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,13 +26,11 @@ public class HomeActivity extends AppCompatActivity{
         setContentView(R.layout.fragment_home);
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment = manager.findFragmentById(R.id.frame);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        SearchCar();
     }
 
-    private void SearchCar(){
-        e1 = (EditText) findViewById(R.id.search);
-        m1 = (ImageView) findViewById(R.id.btn_search);
-        HomeFragment.addclerListener(e1,m1);
-    }
+
+
+
+
+
 }

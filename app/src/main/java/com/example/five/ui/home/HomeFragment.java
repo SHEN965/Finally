@@ -30,14 +30,19 @@ public class HomeFragment extends Fragment {
     private View mView;
     private HomeViewModel homeViewModel;
     private ImageView scanView;
-    private int SCAN_REQUEST_CODE=200;
+    private int SCAN_REQUEST_CODE = 200;
     private OnScanClickListener mListener;
+    private EditText searchText;
+    private ImageView btn_search;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 //        final TextView textView = root.findViewById(R.id.text_home);
         scanView = root.findViewById(R.id.btn_scanning);
+        searchText = root.findViewById(R.id.search);
+        btn_search = root.findViewById(R.id.btn_search);
+        addclerListener(searchText,btn_search);
 //        homeViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
@@ -53,11 +58,11 @@ public class HomeFragment extends Fragment {
         scanView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),ScanActivity.class));
+                startActivity(new Intent(getActivity(), ScanActivity.class));
             }
         });
-    }
 
+    }
 
     public static void addclerListener(final EditText e1, final ImageView m1) {
         e1.addTextChangedListener(new TextWatcher() {
@@ -66,11 +71,13 @@ public class HomeFragment extends Fragment {
                                       int count) {
                 // TODO Auto-generated method stub
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
                 // TODO Auto-generated method stub
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
