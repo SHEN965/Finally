@@ -54,11 +54,16 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-
-            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search" />
 
     </LinearLayout>
+    <com.example.five.view.ImageBannerFramLayout
+        android:id="@+id/image_group"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+    </com.example.five.view.ImageBannerFramLayout>
+
 
 </LinearLayout>

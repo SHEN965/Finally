@@ -1,31 +1,34 @@
 package com.example.five.ui.home;
 
+
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.five.MainActivity;
+
 import com.example.five.R;
 import com.example.five.ScanActivity;
+import com.example.five.view.ImageBannerFramLayout;
 
-import static android.app.Activity.RESULT_OK;
+import java.util.ArrayList;
+import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
 
     private View mView;
     private HomeViewModel homeViewModel;
@@ -34,6 +37,12 @@ public class HomeFragment extends Fragment {
     private OnScanClickListener mListener;
     private EditText searchText;
     private ImageView btn_delete;
+    private ImageBannerFramLayout mGroup;
+    private int[] ids = new int[]{
+            R.drawable.image_ac1,//图片资源1
+            R.drawable.image_ac2//图片资源2
+    };
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -42,7 +51,11 @@ public class HomeFragment extends Fragment {
         scanView = root.findViewById(R.id.btn_scanning);
         searchText = root.findViewById(R.id.search);
         btn_delete = root.findViewById(R.id.btn_delete);
-        addclerListener(searchText,btn_delete);
+        addclerListener(searchText, btn_delete);
+        mGroup = root.findViewById(R.id.image_group);
+        ImageAction();
+
+
 //        homeViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
@@ -99,4 +112,18 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    public void ImageAction(){
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+//        mGroup = (ImageBannerFramLayout) findViewById(R.id.image_group);
+//        mGroup.setLisenner(get);
+        List<Bitmap> list = new ArrayList<>();
+        for (int i = 0; i < ids.length; i++) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),ids[i]);
+            list.add(bitmap);
+        }
+        mGroup.addBitmaps(list);
+    }
+
 }
