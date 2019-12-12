@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ import com.example.five.view.ImageBannerFramLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment implements ImageBannerFramLayout.FramLayoutLisenner {
 
     private View mView;
     private HomeViewModel homeViewModel;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment{
         btn_delete = root.findViewById(R.id.btn_delete);
         addclerListener(searchText, btn_delete);
         mGroup = root.findViewById(R.id.image_group);
+        mGroup.setLisenner(this);
         ImageAction();
 
 
@@ -126,4 +128,9 @@ public class HomeFragment extends Fragment{
         mGroup.addBitmaps(list);
     }
 
+    //此处填写点击事件相关的业务代码
+    @Override
+    public void chickImageIndex(int pos) {
+        Toast.makeText(getActivity(),"点击了第" + pos +  "张图片" , Toast.LENGTH_SHORT).show();
+    }
 }

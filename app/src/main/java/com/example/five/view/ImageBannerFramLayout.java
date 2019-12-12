@@ -100,7 +100,7 @@ public class ImageBannerFramLayout extends FrameLayout implements ImageBarnnerVi
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setGravity(Gravity.CENTER);
 
-        linearLayout.setBackgroundColor(Color.RED);
+//        linearLayout.setBackgroundColor(Color.RED);
         addView(linearLayout);
 
         FrameLayout.LayoutParams layoutParams1 = (LayoutParams) linearLayout.getLayoutParams();

@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/frame"
-    android:background="@color/colorRed">
+    android:background="@color/colorGrey">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -62,7 +63,9 @@
     <com.example.five.view.ImageBannerFramLayout
         android:id="@+id/image_group"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/image_circle">
     </com.example.five.view.ImageBannerFramLayout>
 
 
