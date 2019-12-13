@@ -1,11 +1,14 @@
 package com.example.five;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected final int PERMS_REQUEST_CODE = 202;
     EditText e1, e2;
     ImageView m1, m2;
+    private ImageView welcomeImg = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +51,12 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             requestPermissions(permissions,PERMS_REQUEST_CODE);
         }
+
+
+
     }
 
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
 
-        if (requestCode == SCAN_REQUEST_CODE && resultCode == RESULT_OK) {
-            String input = intent.getStringExtra(ScanActivity.INTENT_EXTRA_RESULT);
-            showToast("扫描结果:"+input);
-        }
-    }
-    private void showToast(String str){
-        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
-    }
 }
