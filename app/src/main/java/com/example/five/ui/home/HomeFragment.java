@@ -71,7 +71,9 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
      */
     private int[] ids = new int[]{
             R.drawable.image_ac1,//图片资源1
-            R.drawable.image_ac2//图片资源2
+            R.drawable.image_ac2,//图片资源2
+            R.drawable.timg,//图片资源3
+            R.drawable.image_ac3
     };
 
     /**

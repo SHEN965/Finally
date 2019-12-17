@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.five.DBUtil;
+import com.example.five.db.DBUtil;
 import com.example.five.R;
 
 public class AnliFragment extends Fragment {
