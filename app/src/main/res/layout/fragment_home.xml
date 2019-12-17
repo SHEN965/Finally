@@ -126,13 +126,7 @@
             android:layout_height="0.1dp"
             android:background="@color/TableLinecolor"></View>
     </LinearLayout>
-    <GridView
-        android:id="@+id/GV_1_Id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="3"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"/>
+
 
 
 
