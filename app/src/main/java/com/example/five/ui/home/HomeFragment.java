@@ -4,6 +4,7 @@ package com.example.five.ui.home;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,20 +25,28 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 
+import com.example.five.Adapter.ProMesAdapter;
 import com.example.five.R;
 import com.example.five.ScanActivity;
+import com.example.five.db.Db;
+import com.example.five.entity.Production;
+import com.example.five.utils.ListUtil;
 import com.example.five.view.ImageBannerFramLayout;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class HomeFragment extends Fragment implements ImageBannerFramLayout.FramLayoutLisenner {
 
     private View mView;
     private HomeViewModel homeViewModel;
+    private ProgressBar hotProgressBar;
+    private GridView hotProductGridView;
     private ImageView scanView;
     private int SCAN_REQUEST_CODE = 200;
-    private OnScanClickListener mListener;
     private EditText searchText;
     private ImageView btn_delete;
     private ImageBannerFramLayout mGroup;
@@ -45,27 +56,50 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
     };
 
 
+    private ProMesAdapter proMesAdapter;
+
+    private List<Production> listItem = new ArrayList<>();
+
+    /**
+     * 热评商品List
+     */
+    private List<Production> listItemHot = new ArrayList<>();
+
+    /**
+     * 推荐商品List
+     */
+    private List<Production> listItemRecommend = new ArrayList<>();
+
+
+
+
+
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
+
+        initView(root);
+
+//        搜索框删除键
         scanView = root.findViewById(R.id.btn_scanning);
         searchText = root.findViewById(R.id.search);
         btn_delete = root.findViewById(R.id.btn_delete);
         addclerListener(searchText, btn_delete);
+
+//        轮播图
         mGroup = root.findViewById(R.id.image_group);
         mGroup.setLisenner(this);
         ImageAction();
 
-
-//        homeViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        test();
         return root;
     }
+
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -76,6 +110,7 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                 startActivity(new Intent(getActivity(), ScanActivity.class));
             }
         });
+
 
     }
 
@@ -118,8 +153,6 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
     public void ImageAction(){
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         int width = displayMetrics.widthPixels;
-//        mGroup = (ImageBannerFramLayout) findViewById(R.id.image_group);
-//        mGroup.setLisenner(get);
         List<Bitmap> list = new ArrayList<>();
         for (int i = 0; i < ids.length; i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(),ids[i]);
@@ -128,9 +161,39 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
         mGroup.addBitmaps(list);
     }
 
+
     //此处填写点击事件相关的业务代码
     @Override
     public void chickImageIndex(int pos) {
         Toast.makeText(getActivity(),"点击了第" + pos +  "张图片" , Toast.LENGTH_SHORT).show();
+    }
+
+    private void initView(View view){
+        hotProgressBar = view.findViewById(R.id.hot_progress);
+
+        hotProductGridView = view.findViewById(R.id.hot_gridview);
+    }
+
+
+
+
+
+    public void test()
+    {
+        new AsyncTask<String,Void,List<Production>>(){
+            @Override
+            protected List<Production> doInBackground(String... strings) {
+                return Db.Query(strings[0]);
+            }
+            @Override
+            protected void onPostExecute(List<Production> productions) {
+                super.onPostExecute(productions);
+                listItemHot = ListUtil.getRandomList(productions, 2);
+                //模拟获取热评商品
+                hotProductGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemHot));
+                hotProgressBar.setVisibility(View.GONE);
+                hotProductGridView.setVisibility(View.VISIBLE);
+            }
+        }.execute("select * from goods");
     }
 }

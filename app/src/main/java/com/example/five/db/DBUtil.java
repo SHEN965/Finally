@@ -1,4 +1,4 @@
-package com.example.five;
+package com.example.five.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,7 +32,7 @@ public class DBUtil
         String result = "";
         try
         {
-            Connection conn = getSQLConnection("10.150.32.101", "sa", "123456", "guzzi");
+            Connection conn = getSQLConnection("10.150.24.95", "sa", "123456", "guzzi");
             String sql = "select * from goods";
             Statement stmt = conn.createStatement();//
             ResultSet rs = stmt.executeQuery(sql);
@@ -40,8 +40,9 @@ public class DBUtil
             {
                 String s1 = rs.getString("goodsname");
                 String s2 = rs.getString("goodsprice");
-                result += s1 + "  -  " + s2 + "\n";
-                System.out.println(s1 + "  -  " + s2);
+                String s3 = rs.getString("imgurl");
+                result += s1 + "  -  " + s2 +"  -  "+s3+ "\n";
+//                System.out.println(s1 + "  -  " + s2+"  -  "+s3);
             }
             rs.close();
             stmt.close();

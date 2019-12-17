@@ -20,4 +20,7 @@
     <color name="true_white">#ffffff</color>
     <color name="true_black">#000000</color>
     <color name="personal_background_red">#DC143C</color>
+
+    <!--详情页面-->
+    <color name="TableLinecolor">#fff5f5f5</color>
 </resources>

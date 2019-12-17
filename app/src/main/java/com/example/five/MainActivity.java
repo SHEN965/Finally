@@ -1,19 +1,16 @@
 package com.example.five;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Intent;
+
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.five.ui.home.HomeFragment;
+import android.widget.EditText;
+
+import android.widget.ImageView;
+
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
@@ -51,12 +48,6 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             requestPermissions(permissions,PERMS_REQUEST_CODE);
         }
-
-
-
     }
-
-
-
 
 }

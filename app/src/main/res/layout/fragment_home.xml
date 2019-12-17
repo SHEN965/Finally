@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/frame"
-    android:background="@color/colorGrey">
+    android:background="@color/colorRed">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,6 +66,74 @@
         android:layout_margin="10dp"
         android:background="@drawable/image_circle">
     </com.example.five.view.ImageBannerFramLayout>
+
+    <RelativeLayout
+        android:id="@+id/hotlayout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/banner_layout"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/hot_title"
+            android:src="@drawable/home53" />
+
+        <TextView
+            android:id="@+id/hot_title"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="5dp"
+            android:text="@string/home_hot_cate"
+            android:textColor="#FF4040"
+            android:textSize="45px" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/hotproduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hotlayout"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/TableLinecolor"></View>
+
+        <GridView
+            android:id="@+id/hot_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/TableLinecolor"
+            android:horizontalSpacing="0.5dp"
+            android:numColumns="2"
+            android:verticalSpacing="0.5dp"/>
+<!--            android:visibility="gone" -->
+
+        <ProgressBar
+            android:id="@+id/hot_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/TableLinecolor"></View>
+    </LinearLayout>
+    <GridView
+        android:id="@+id/GV_1_Id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"/>
+
 
 
 </LinearLayout>
