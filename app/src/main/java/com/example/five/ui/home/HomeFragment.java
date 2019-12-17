@@ -43,22 +43,36 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
 
     private View mView;
     private HomeViewModel homeViewModel;
+
+    /**
+     * 热评商品控件
+     */
     private ProgressBar hotProgressBar;
     private GridView hotProductGridView;
+
+
+    /**
+     * 推荐商品控件
+     */
+    private ProgressBar commoditProgressBar;
+    private GridView commodityGridView;
+
+
     private ImageView scanView;
-    private int SCAN_REQUEST_CODE = 200;
+
     private EditText searchText;
+
     private ImageView btn_delete;
+
     private ImageBannerFramLayout mGroup;
+
+    /**
+     * 轮播图图片
+     */
     private int[] ids = new int[]{
             R.drawable.image_ac1,//图片资源1
             R.drawable.image_ac2//图片资源2
     };
-
-
-    private ProMesAdapter proMesAdapter;
-
-    private List<Production> listItem = new ArrayList<>();
 
     /**
      * 热评商品List
@@ -110,10 +124,10 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                 startActivity(new Intent(getActivity(), ScanActivity.class));
             }
         });
-
-
     }
 
+
+    //输入框清除模块
     public static void addclerListener(final EditText e1, final ImageView m1) {
         e1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -168,10 +182,16 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
         Toast.makeText(getActivity(),"点击了第" + pos +  "张图片" , Toast.LENGTH_SHORT).show();
     }
 
+
+    //初始化推荐热评模块
     private void initView(View view){
         hotProgressBar = view.findViewById(R.id.hot_progress);
 
         hotProductGridView = view.findViewById(R.id.hot_gridview);
+
+        commoditProgressBar = view.findViewById(R.id.recommend_progress);
+
+        commodityGridView = view.findViewById(R.id.recommend_gridview);
     }
 
 
@@ -193,6 +213,12 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                 hotProductGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemHot));
                 hotProgressBar.setVisibility(View.GONE);
                 hotProductGridView.setVisibility(View.VISIBLE);
+
+                listItemHot = ListUtil.getRandomList(productions, 2);
+                //模拟获取热评商品
+                commodityGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemHot));
+                commoditProgressBar.setVisibility(View.GONE);
+                commodityGridView.setVisibility(View.VISIBLE);
             }
         }.execute("select * from goods");
     }

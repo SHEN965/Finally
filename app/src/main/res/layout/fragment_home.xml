@@ -127,6 +127,66 @@
             android:background="@color/TableLinecolor"></View>
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/recommendlayout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/hotproduct"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/recommend_title"
+            android:src="@drawable/recommend" />
+
+        <TextView
+            android:id="@+id/recommend_title"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="5dp"
+            android:text="@string/home_recommend"
+            android:textColor="#FFC125"
+            android:textSize="45px" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/recommendproduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recommendlayout"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/TableLinecolor"></View>
+
+        <GridView
+            android:id="@+id/recommend_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/TableLinecolor"
+            android:horizontalSpacing="1dp"
+            android:numColumns="2"
+            android:verticalSpacing="15dp"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/recommend_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/TableLinecolor"></View>
+    </LinearLayout>
 
 
 

@@ -46,7 +46,7 @@ public class ProMesAdapter extends BaseAdapter {
         return 0;
     }
 
-    //写一个静态的class,把layout_grid_item的控件转移过来使用
+    //写一个静态的class,把item_commodity的控件转移过来使用
     static class ViewHolder {
         public ImageView Grid_imageview;
         public TextView Grid_textview_name;
@@ -55,9 +55,7 @@ public class ProMesAdapter extends BaseAdapter {
 
     }
 
-//    void getData() {
-//        list=DBUtil.QuerySQL();
-//    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -65,7 +63,7 @@ public class ProMesAdapter extends BaseAdapter {
         ViewHolder holder = null;
         production=list.get(position);
         if (convertView == null) {
-            //填写ListView的图标和标题等控件的来源，来自于layout_list_item这个布局文件
+            //填写ListView的图标和标题等控件的来源，来自于item_commodity这个布局文件
             //把控件所在的布局文件加载到当前类中
             convertView = mlayoutInflater.inflate(R.layout.item_commodity, null);
             //生成一个ViewHolder的对象
