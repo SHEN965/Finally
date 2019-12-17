@@ -17,14 +17,14 @@ import com.example.five.entity.Production;
 
 import java.util.List;
 
-public class ProMesAdapter extends BaseAdapter {
+public class Adapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mlayoutInflater;
     private List<Production> list;
     public Production production;
 
-    public ProMesAdapter(Context context,List<Production> list) {
+    public Adapter(Context context,List<Production> list) {
         this.mContext = context;
         this.list = list;
         mlayoutInflater = LayoutInflater.from(context);
@@ -32,7 +32,7 @@ public class ProMesAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 4;
     }
 
     @Override
@@ -47,9 +47,9 @@ public class ProMesAdapter extends BaseAdapter {
 
     //写一个静态的class,把item_commodity的控件转移过来使用
     static class ViewHolder {
-        public ImageView Grid_imageview;
-        public TextView Grid_textview_name;
-        public TextView Grid_textview_price;
+        public ImageView img;
+        public TextView name;
+        public TextView price;
     }
 
     @Override
@@ -60,13 +60,13 @@ public class ProMesAdapter extends BaseAdapter {
         if (convertView == null) {
             //填写ListView的图标和标题等控件的来源，来自于item_commodity这个布局文件
             //把控件所在的布局文件加载到当前类中
-            convertView = mlayoutInflater.inflate(R.layout.item_commodity, null);
+            convertView = mlayoutInflater.inflate(R.layout.item, null);
             //生成一个ViewHolder的对象
             holder = new ViewHolder();
             //获取控件对象
-            holder.Grid_imageview = convertView.findViewById(R.id.commodityImg);
-            holder.Grid_textview_name = convertView.findViewById(R.id.commodityName);
-            holder.Grid_textview_price = convertView.findViewById(R.id.commodityPrice);
+            holder.img = convertView.findViewById(R.id.img);
+            holder.name = convertView.findViewById(R.id.name);
+            holder.price = convertView.findViewById(R.id.price);
             //把ViewHolder对象封装到View对象中
             convertView.setTag(holder);
         } else {
@@ -78,15 +78,16 @@ public class ProMesAdapter extends BaseAdapter {
         String proprice = production.getProPrice();
         String imgurl = production.getImg_url();
 
+
         //修改空间属性
-        holder.Grid_textview_name.setText(proname);
+        holder.name.setText(proname);
 //        holder.Grid_textview_name.setTextSize(10);
 
-        holder.Grid_textview_price.setText("￥ " + proprice + "元");
+        holder.price.setText("￥ " + proprice + "元");
 //        holder.Grid_textview_price.setTextSize(14);
 
         //加载第三方网络图片
-        Glide.with(mContext).load(imgurl).into(holder.Grid_imageview);
+        Glide.with(mContext).load(imgurl).into(holder.img);
 
         return convertView;
     }
