@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import com.example.five.R;
 import com.example.five.ScanActivity;
 import com.example.five.db.Db;
 import com.example.five.entity.Production;
+import com.example.five.ui.Details.ProDetailsFragment;
 import com.example.five.utils.ListUtil;
 import com.example.five.view.ImageBannerFramLayout;
 
@@ -215,6 +217,15 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                 hotProductGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemHot));
                 hotProgressBar.setVisibility(View.GONE);
                 hotProductGridView.setVisibility(View.VISIBLE);
+                hotProductGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(getActivity(), ProDetailsFragment.class);
+
+                        intent.putExtra("id",listItemHot.get(i).getProId()+"");
+                        startActivity(intent);
+                    }
+                });
 
                 listItemHot = ListUtil.getRandomList(productions, 2);
                 //模拟获取热评商品

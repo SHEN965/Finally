@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Db {
-    private static String IP = "10.148.56.114";  //本机ip地址  而不是 127.0.0.1
+    private static String IP = "10.150.47.161";  //本机ip地址  而不是 127.0.0.1
     private static String DBName = "guzzi";  //数据库名
     private static String USER = "sa";  //账号
     private static String PWD = "123456";   //密码
@@ -46,6 +46,7 @@ public class Db {
             rs = stmt.executeQuery(sql);
             while (rs.next()){
                 Production production = new Production();
+                production.setProId(rs.getString("goodsid"));
                 production.setProName(rs.getString("goodsname"));
                 production.setProPrice(rs.getString("goodsprice"));
                 production.setImg_url(rs.getString("imgurl"));

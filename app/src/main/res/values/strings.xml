@@ -33,4 +33,11 @@
 
     <!--开启画面-->
     <string name="app_description">在线购物，享你所想！</string>
+
+    <!-- 商品详情页面 -->
+    <string name="commodity_detail_title">商品详情</string>
+    <string name="commodity_detail_info">产品信息</string>
+    <string name="commodity_detail_service">服务</string>
+    <string name="commodity_btn_like">收藏</string>
+
 </resources>

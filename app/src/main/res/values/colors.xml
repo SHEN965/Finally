@@ -23,4 +23,6 @@
 
     <!--详情页面-->
     <color name="TableLinecolor">#fff5f5f5</color>
+    <color name="light_blue">#03a9f4</color>
+    <color name="iron">#CCCCCC</color>
 </resources>
