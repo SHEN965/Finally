@@ -54,7 +54,6 @@ public class ProMesAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        Production production = new Production();
         ViewHolder holder = null;
         production=list.get(position);
         if (convertView == null) {

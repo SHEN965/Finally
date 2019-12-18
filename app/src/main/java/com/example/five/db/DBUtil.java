@@ -32,7 +32,7 @@ public class DBUtil
         String result = "";
         try
         {
-            Connection conn = getSQLConnection("10.150.24.95", "sa", "123456", "guzzi");
+            Connection conn = getSQLConnection("10.150.47.161", "sa", "123456", "guzzi");
             String sql = "select * from goods";
             Statement stmt = conn.createStatement();//
             ResultSet rs = stmt.executeQuery(sql);
