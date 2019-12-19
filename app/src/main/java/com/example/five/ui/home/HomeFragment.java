@@ -226,11 +226,20 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                     }
                 });
 
-                listItemHot = ListUtil.getRandomList(productions, 2);
+
+                listItemRecommend = ListUtil.getRandomList(productions, 2);
                 //模拟获取热评商品
-                commodityGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemHot));
+                commodityGridView.setAdapter(new ProMesAdapter(HomeFragment.this.getContext(),listItemRecommend));
                 commoditProgressBar.setVisibility(View.GONE);
                 commodityGridView.setVisibility(View.VISIBLE);
+                commodityGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        Intent intent = new Intent(getActivity(), ProDetailsActivity.class);
+                        intent.putExtra("id",listItemRecommend.get(position).getProId()+"");
+                        startActivity(intent);
+                    }
+                });
             }
         }.execute("select * from goods");
     }

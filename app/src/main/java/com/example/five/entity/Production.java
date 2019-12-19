@@ -1,10 +1,5 @@
 package com.example.five.entity;
 
-import com.example.five.db.MyDatabase;
-
-import java.util.Date;
-import java.util.List;
-
 public class Production {
 
     private String proId;

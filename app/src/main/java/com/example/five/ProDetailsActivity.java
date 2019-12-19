@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.example.five.Adapter.ProMesAdapter;
 import com.example.five.db.Db;
 import com.example.five.entity.Production;
@@ -54,13 +56,10 @@ public class ProDetailsActivity extends AppCompatActivity{
 
     private Context mContext;
 
-    private Production production;
 
     private List<Production> list;
+    private Production production;
 
-    private Handler uiHandler = new Handler(){
-
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +72,7 @@ public class ProDetailsActivity extends AppCompatActivity{
         init();
         initCommodityData();
     }
+
 
     private void init(){
         detailImg = findViewById(R.id.detail_img);
@@ -90,19 +90,7 @@ public class ProDetailsActivity extends AppCompatActivity{
     }
 
 
-
-
-    private void initCommodity(Production production) {
-        if (production != null) {
-            //商品信息以、单价、简介和剩余
-            detailName.setText(production.getProName());
-            detailPrice.setTextColor(Color.RED);
-            detailPrice.setText("￥ " + production.getProPrice() + " 元");
-        }
-
-    }
-
-    private void initCommodityData(){
+    public void initCommodityData(){
         new AsyncTask<String,Void,List<Production>>(){
             @Override
             protected List<Production> doInBackground(String... strings) {
@@ -111,11 +99,16 @@ public class ProDetailsActivity extends AppCompatActivity{
             @Override
             protected void onPostExecute(List<Production> productions) {
                 super.onPostExecute(productions);
+                production = productions.get(0);
+                String imgurl = production.getImg_url();
+
+                //商品信息以、单价、简介和剩余
+                Glide.with(mContext).load(imgurl).into(detailImg);
+                detailName.setText(production.getProName());
+                detailPrice.setTextColor(Color.RED);
+                detailPrice.setText("￥ " + production.getProPrice() + " 元");
             }
-        }.execute("select * from goods where goodsid='12' ");
+        }.execute("select * from goods where goodsid="+productId);
     }
-
-
-
-
 }
+
