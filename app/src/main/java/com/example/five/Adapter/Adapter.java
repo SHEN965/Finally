@@ -32,7 +32,7 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 100;
     }
 
     @Override
