@@ -46,7 +46,7 @@ public class Adapter extends BaseAdapter {
     }
 
     //写一个静态的class,把item_commodity的控件转移过来使用
-    static class ViewHolder {
+    public static class ViewHolder {
         public ImageView img;
         public TextView name;
         public TextView price;
