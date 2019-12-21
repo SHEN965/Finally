@@ -22,6 +22,7 @@ public class Production {
 //        this.Img_url = Img_url;
 //    }
 
+
     public String getProName() {
         return proName;
     }
