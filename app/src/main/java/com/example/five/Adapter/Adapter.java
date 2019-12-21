@@ -32,7 +32,7 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 100;
+        return list.size();
     }
 
     @Override
@@ -51,7 +51,6 @@ public class Adapter extends BaseAdapter {
         public TextView name;
         public TextView price;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 //        Production production = new Production();
@@ -72,7 +71,6 @@ public class Adapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
 //        Production production = list.get(position);
         String proname = production.getProName();
         String proprice = production.getProPrice();
@@ -83,12 +81,11 @@ public class Adapter extends BaseAdapter {
         holder.name.setText(proname);
 //        holder.Grid_textview_name.setTextSize(10);
 
-        holder.price.setText("￥ " + proprice + "元");
+        holder.price.setText("￥ " + proprice );
 //        holder.Grid_textview_price.setTextSize(14);
 
         //加载第三方网络图片
         Glide.with(mContext).load(imgurl).into(holder.img);
-
         return convertView;
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="24dp"
         android:text="我的收藏"
         android:textStyle="bold"
         android:layout_margin="10dp"
@@ -24,10 +24,19 @@
     <ListView
         android:id="@+id/star_listview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="550dp"/>
     <ProgressBar
         android:id="@+id/star_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/text_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="250dp"
+        android:textColor="#eb4e4a"
+        android:text="您还没有收藏商品"/>
 </LinearLayout>
