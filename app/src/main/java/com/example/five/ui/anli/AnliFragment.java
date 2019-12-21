@@ -1,11 +1,14 @@
 package com.example.five.ui.anli;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.ConditionVariable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.five.Adapter.Adapter;
 import com.example.five.Adapter.ProMesAdapter;
 import com.example.five.ProDetailsActivity;
@@ -44,14 +48,13 @@ public class AnliFragment extends Fragment {
 
     private Production production;
     private List<String> setTitlelist,setPricelist;
-    private List<Production> mydata = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private RecyclerAdapter mMyAdapter;
     private View view;//定义view用来设置fragment的layout
     private ProMesAdapter mProMesAdapter;
-private TextView mView;
+    private TextView mView;
     private SwipeRefreshLayout mRefreshLayout;
 
     //最后一个可见Item的位置，关键所在
@@ -59,9 +62,15 @@ private TextView mView;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private int mLastVisibleItem;
 
+    private TextView anliname,anliprice;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         anliViewModel = ViewModelProviders.of(this).get(AnliViewModel.class);
         view = inflater.inflate(R.layout.fragment_anli, container, false);
+        LayoutInflater factory = LayoutInflater.from(view.getContext());
+        View itemView = factory.inflate(R.layout.item_view_test,null);
+        anliname = (TextView) itemView.findViewById(R.id.test_title);
+        anliprice = (TextView)itemView.findViewById(R.id.test_content);
         initData();
 
 
@@ -157,9 +166,10 @@ private TextView mView;
     private void initData() {
         setTitlelist = new ArrayList<>();
         setPricelist = new ArrayList<>();
-        for (int i = 0; i <= 20; i++) {
-            setTitlelist.add(getItemName(i));
-            setPricelist.add(getItemPrice(i));
+        for (int i = 1; i <= 10; i++) {
+            getAnliname(i);
+            setTitlelist.add(getnameinit());
+            setPricelist.add(getpriceinit());
         }
     }
 
@@ -178,8 +188,17 @@ private TextView mView;
         return true;
     }
 
-    public String getItemName(int i)
-    {
+
+    public String getnameinit(){
+        return anliname.getText().toString();
+    }
+
+    public String getpriceinit(){
+        return anliprice.getText().toString();
+    }
+
+    public void getAnliname(int i){
+
         new AsyncTask<String,Void,List<Production>>(){
             @Override
             protected List<Production> doInBackground(String... strings) {
@@ -189,32 +208,12 @@ private TextView mView;
             protected void onPostExecute(List<Production> productions) {
                 super.onPostExecute(productions);
                 production = productions.get(0);
-                production.getProName();
 
+                anliname.setText("abc");
+                anliprice.setText("abc");
             }
-        }.execute("select * from goods goodsid="+i);
-
-        return production.getProName();
+        }.execute("select * from goods where goodsid="+i);
     }
 
-
-    public String getItemPrice(int i)
-    {
-        new AsyncTask<String,Void,List<Production>>(){
-            @Override
-            protected List<Production> doInBackground(String... strings) {
-                return Db.Query(strings[0]);
-            }
-            @Override
-            protected void onPostExecute(List<Production> productions) {
-                super.onPostExecute(productions);
-                production = productions.get(0);
-                production.getProPrice();
-
-            }
-        }.execute("select * from goods goodsid="+i);
-
-        return production.getProPrice();
-    }
 
 }

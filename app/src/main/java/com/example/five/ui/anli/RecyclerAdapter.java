@@ -1,11 +1,13 @@
 package com.example.five.ui.anli;
 
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.five.Adapter.Adapter;
 import com.example.five.R;
+import com.example.five.db.Db;
+import com.example.five.entity.Production;
 
 import java.util.List;
 
@@ -136,9 +140,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public TextView mTitle;
         public TextView mPrice;
         public ImageView mImg;
+        public LinearLayout mItem;
 
         public NormalHolder(View itemView) {
             super(itemView);
+            mItem = itemView.findViewById(R.id.my_item);
             mTitle = itemView.findViewById(R.id.my_title);
             mPrice = itemView.findViewById(R.id.my_content);
         }
@@ -173,6 +179,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         mPriceList.remove(position);
         notifyItemRemoved(position);
     }
+
+    private TextView anliname,anliprice;
+    private Production production;
+
+    private String mName,mPrice;
+
 
 
 }
