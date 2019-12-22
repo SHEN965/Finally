@@ -6,6 +6,15 @@ public class Production {
     private String proName;
     private String proPrice;
     private String Img_url;
+    private int star;
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
 
 //    public Production(String proName,String proPrice,String Img_url){
 //        this.proName = proName;

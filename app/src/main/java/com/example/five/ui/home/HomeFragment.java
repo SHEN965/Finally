@@ -222,6 +222,7 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         Intent intent = new Intent(getActivity(), ProDetailsActivity.class);
                         intent.putExtra("id",listItemHot.get(position).getProId()+"");
+                        intent.putExtra("star",listItemHot.get(position).getStar());
                         startActivity(intent);
                     }
                 });
@@ -237,6 +238,7 @@ public class HomeFragment extends Fragment implements ImageBannerFramLayout.Fram
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         Intent intent = new Intent(getActivity(), ProDetailsActivity.class);
                         intent.putExtra("id",listItemRecommend.get(position).getProId()+"");
+                        intent.putExtra("star",listItemRecommend.get(position).getStar());
                         startActivity(intent);
                     }
                 });

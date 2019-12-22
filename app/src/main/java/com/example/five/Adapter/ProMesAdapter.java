@@ -81,7 +81,7 @@ public class ProMesAdapter extends BaseAdapter {
         holder.Grid_textview_name.setText(proname);
 //        holder.Grid_textview_name.setTextSize(10);
 
-        holder.Grid_textview_price.setText("￥ " + proprice + "元");
+        holder.Grid_textview_price.setText("￥ " + proprice );
 //        holder.Grid_textview_price.setTextSize(14);
 
         //加载第三方网络图片

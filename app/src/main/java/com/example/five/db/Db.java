@@ -1,9 +1,14 @@
 package com.example.five.db;
+import android.content.ContentValues;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.example.five.entity.Production;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -14,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Db {
-    private static String IP = "10.150.21.244";  //本机ip地址  而不是 127.0.0.1
+    private static String IP = "10.148.119.177";  //本机ip地址  而不是 127.0.0.1
     private static String DBName = "guzzi";  //数据库名
     private static String USER = "sa";  //账号
     private static String PWD = "123456";   //密码
@@ -35,7 +40,6 @@ public class Db {
         return con;
     }
 
-
     public static List<Production> Query(String sql) {
         List<Production> result = new ArrayList();
         ResultSet rs = null;
@@ -50,6 +54,7 @@ public class Db {
                 production.setProName(rs.getString("goodsname"));
                 production.setProPrice(rs.getString("goodsprice"));
                 production.setImg_url(rs.getString("imgurl"));
+                production.setStar(rs.getInt("star"));
                 result.add(production);
             }
             rs.close();
@@ -69,7 +74,7 @@ public class Db {
 //     * @throws
 //     */
 //    //region 传入sql,返回转换成List(查询)
-//    public static List<Production> Query(String sql) {
+//    public static List<Production> Query1(String sql) {
 //        List<Production> result = new ArrayList();
 //        ResultSet rs = null;
 //        try {
@@ -96,7 +101,7 @@ public class Db {
 //
 //        return result;
 //    }
-//
+
 //
 //
 //
@@ -176,34 +181,34 @@ public class Db {
 //    }
 //    //endregion
 //
-//
+
 //    /**
 //     * 更新数据，新增，修改，删除
 //     */
 //    //region 更新数据，新增，修改，删除 返回int
-//    public static int exesqlint(String sql) {
-//        int rs = 0;
-//        try {
-//
-//            Connection conn = getSQLConnection();
-//            Statement stmt = conn.createStatement();//
-//            rs = stmt.executeUpdate(sql);
-//            stmt.close();
-//            conn.close();
-//        } catch (SQLException e) {
-//            //      LogUtil.e("TestDButil", e.getMessage() + "," + sql); //本机打印日志
-//
-//            String res = "查询数据异常" + e.getMessage();
-//            e.printStackTrace();
-//            return 0;
-//        } catch (Exception e) {
-//            // LogUtil.e("TestDButil", e.getMessage() + "," + sql); //本机打印日志
-//
-//            return 0;
-//        }
-//
-//        return rs;
-//    }
+    public static int exesqlint(String sql) {
+        int rs = 0;
+        try {
+
+            Connection conn = getSQLConnection();
+            Statement stmt = conn.createStatement();//
+            rs = stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            //      LogUtil.e("TestDButil", e.getMessage() + "," + sql); //本机打印日志
+
+            String res = "查询数据异常" + e.getMessage();
+            e.printStackTrace();
+            return 0;
+        } catch (Exception e) {
+            // LogUtil.e("TestDButil", e.getMessage() + "," + sql); //本机打印日志
+
+            return 0;
+        }
+
+        return rs;
+    }
 //    //endregion
 //
 //    //region 更新数据，新增，修改，删除 返回LIST数据
@@ -239,7 +244,7 @@ public class Db {
 //        }
 //        return result;
 //    }
-//
+
 //
 //    //endregion
 //
@@ -251,7 +256,7 @@ public class Db {
 //     * @return
 //     * @throws
 //     */
-//    //region 查询，又多少条行数
+    //region 查询，又多少条行数
 //    public static int hasrows(String sql) {
 //        int result = 0;
 //
@@ -282,9 +287,9 @@ public class Db {
 //        }
 //        return result;
 //    }
-//    //endregion
-//
-//
+    //endregion
+
+
 //    //region 传入sql,返回转换成List(查询)
 //    public static <T> List QueryT(String sql, T t) {
 //        List result = new ArrayList();
@@ -318,7 +323,7 @@ public class Db {
 //
 //        return result;
 //    }
-//
+
 //
 //    /**
 //     * ResultSet转List<T>
