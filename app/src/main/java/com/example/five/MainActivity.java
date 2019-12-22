@@ -2,6 +2,8 @@ package com.example.five;
 
 import android.Manifest;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     EditText e1, e2;
     ImageView m1, m2;
     private ImageView welcomeImg = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +54,6 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(permissions,PERMS_REQUEST_CODE);
         }
     }
+
 
 }

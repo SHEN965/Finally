@@ -26,7 +26,7 @@ public class Db {
 
 
     /** 创建数据库对象 */
-    private static Connection getSQLConnection() {
+    public static Connection getSQLConnection() {
         Connection con = null;
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");

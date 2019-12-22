@@ -1,5 +1,7 @@
 package com.example.five.ui.anli;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.five.Adapter.Adapter;
 import com.example.five.R;
 import com.example.five.db.Db;
@@ -31,15 +34,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int TYPE_NORMAL = 1;//不带Footer的Item
 
     //数据源
-    private List<String> mTitleList,mPriceList;
+    private List<String> mTitleList,mPriceList,mImagelist,mIdList;
     //上拉加载状态，默认为状态0-上拉加载更多
     private int load_more_status = 0;
 
+    private Context context;
+
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public RecyclerAdapter(List<String> getTitleList,List<String> getPriceList) {
+    public RecyclerAdapter(Context context,List<String> getTitleList,List<String> getPriceList,List<String> getImagelist,List<String> getIdList) {
+        this.context = context;
         mTitleList = getTitleList;
         mPriceList = getPriceList;
+        mImagelist = getImagelist;
+        mIdList = getIdList;
+
     }
     //定义点击事件的接口
     public interface OnItemClickListener {
@@ -80,14 +89,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+
+
+
+
     //填充视图
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+
         //普通Item，直接设置
         if (holder instanceof NormalHolder) {
             //为普通Item填充数据
             ((NormalHolder) holder).mTitle.setText(mTitleList.get(position));
             ((NormalHolder) holder).mPrice.setText(mPriceList.get(position));
+            ((NormalHolder) holder).mId.setText(mIdList.get(position));
+            if (context != null){
+                Glide.with(context).load(mImagelist.get(position)).into(((NormalHolder) holder).mImg);
+            }
+
             //设置监听
             if (mOnItemClickListener!=null){
                 ((NormalHolder) holder).mTitle.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +139,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+
+
     //改变当前上拉状态
     public void changeMoreStatus(int status){
         load_more_status= status;
@@ -139,30 +160,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class NormalHolder extends RecyclerView.ViewHolder {
         public TextView mTitle;
         public TextView mPrice;
+        public TextView mId;
         public ImageView mImg;
-        public LinearLayout mItem;
+        public LinearLayout my_item;
 
         public NormalHolder(View itemView) {
             super(itemView);
-            mItem = itemView.findViewById(R.id.my_item);
             mTitle = itemView.findViewById(R.id.my_title);
             mPrice = itemView.findViewById(R.id.my_content);
+            mImg =  itemView.findViewById(R.id.my_img);
+            mId = itemView.findViewById(R.id.anliId);
+            my_item = itemView.findViewById(R.id.my_item);
         }
     }
     //头部添加Item，供上拉刷新时调用
-    public void addItem(List<String> getTitleList,List<String> getPriceList){
+    public void addItem(List<String> getTitleList,List<String> getPriceList,List<String> getImageList,List<String> getIdList){
         getTitleList.addAll(mTitleList);
         getPriceList.addAll(mPriceList);
+        getImageList.addAll(mImagelist);
+        getIdList.addAll(mIdList);
         mTitleList.clear();
         mPriceList.clear();
+        mImagelist.clear();
+        mIdList.clear();
         mTitleList.addAll(getTitleList);
         mPriceList.addAll(getPriceList);
+        mImagelist.addAll(getImageList);
+        mIdList.addAll(getIdList);
         notifyDataSetChanged();
     }
     //末尾添加Item，供上拉加载更多时调用
-    public void addMoreItem(List<String> getTitleList,List<String> getPriceList){
+    public void addMoreItem(List<String> getTitleList,List<String> getPriceList,List<String> getImageList,List<String> getIdList){
         mTitleList.addAll(getTitleList);
         mPriceList.addAll(getPriceList);
+        mImagelist.addAll(getImageList);
+        mIdList.addAll(getIdList);
         notifyDataSetChanged();
     }
 
@@ -170,6 +202,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void addData(int position) {
         mTitleList.add(position, "Insert One");
         mPriceList.add(position, "Insert One");
+        mImagelist.add(position, "Insert One");
         notifyItemInserted(position);
     }
 
@@ -177,13 +210,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void removeData(int position) {
         mTitleList.remove(position);
         mPriceList.remove(position);
+        mImagelist.remove(position);
         notifyItemRemoved(position);
     }
-
-    private TextView anliname,anliprice;
-    private Production production;
-
-    private String mName,mPrice;
 
 
 
