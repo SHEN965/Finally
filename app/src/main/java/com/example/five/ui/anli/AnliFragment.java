@@ -71,7 +71,7 @@ public class AnliFragment extends Fragment {
                 List<String> addSetImagelist = new ArrayList<String>();
                 List<String> addSetIdlist = new ArrayList<String>();
 
-                for (int i = 10; i < 15; i++) {
+                for (int i = 100; i < 105; i++) {
                     addSetTitlelist.add(newSetTitlelist.get(i));
                     addSetPricelist.add(newSetPricelist.get(i));
                     addSetImagelist.add(newSetImagelist.get(i));
@@ -166,7 +166,7 @@ public class AnliFragment extends Fragment {
         newSetPricelist = new ArrayList<>();
         newSetImagelist = new ArrayList<>();
         newsetIdlist = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 50 ;i <= 60; i++) {
             InitData initData = new InitData();
             initData.setmAsyncResponse(new InitData.AsyncResponse() {
                 @Override
@@ -192,7 +192,7 @@ public class AnliFragment extends Fragment {
             });
             initData.execute("select * from goods where goodsid="+i);
         }
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= 180; i++) {
             InitData initData = new InitData();
             initData.setmAsyncResponse(new InitData.AsyncResponse() {
                 @Override
