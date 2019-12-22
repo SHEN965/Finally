@@ -68,7 +68,7 @@ public class StarFragment extends Fragment {
             @Override
             protected void onPostExecute(List<Production> productions) {
                 super.onPostExecute(productions);
-                listItemStar = ListUtil.getRandomList(productions, 30);
+                listItemStar = ListUtil.getRandomList(productions, 150);
                 //模拟获取热评商品
                 starProductListView.setAdapter(new Adapter(StarFragment.this.getContext(),listItemStar));
                 starProgressBar.setVisibility(View.GONE);
